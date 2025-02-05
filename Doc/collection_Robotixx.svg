@@ -101,14 +101,14 @@
        textLength="750"
        id="text8"
        lengthAdjust="spacing"
-       style="fill:#4d4d4d">Robotixx</text>
+       style="fill:#4d4d4d">RobotiXX</text>
     <text
        x="1025"
        y="140"
-       transform="matrix(0.1,0,0,0.1,1.7939867,0.50637106)"
+       transform="matrix(0.1,0,0,0.1,1.7939867,0.5063711)"
        fill="#ffffff"
        textLength="750"
        id="text8-3"
-       lengthAdjust="spacing">Robotixx</text>
+       lengthAdjust="spacing">RobotiXX</text>
   </g>
 </svg>
