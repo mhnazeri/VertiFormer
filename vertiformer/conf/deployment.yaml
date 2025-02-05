@@ -1,0 +1,10 @@
+compile: True
+task: fkd
+tverti: ${from_yaml:vertiformer/conf/vertiformer.yaml, model}
+tverti_weight: vertiformer/checkpoint/exp-E490.tar
+bc: ${from_yaml:vertiformer/conf/bc_model.yaml, model}
+bc_weight: vertiformer/checkpoint/dt-bc-frozen-best.tar
+fkd: ${from_yaml:vertiformer/conf/fkd_model.yaml, model}
+fkd_weight: vertiformer/checkpoint/dt-fkd-frozen-best.tar
+ikd: ${from_yaml:vertiformer/conf/ikd_model.yaml, model}
+ikd_weight: vertiformer/checkpoint/dt-ikd-frozen-best.tar

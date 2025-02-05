@@ -1,0 +1,15 @@
+model:
+  pose:
+    dims: [64,128]
+    act: leakyrelu
+    l_act: False
+    norm: ln
+    dropout: 0.2
+    bias: False
+  fc:
+    dims: [ 768, 256, 64, 32 ]
+    act: tanh
+    l_act: False
+    norm: False
+    dropout: 0.2
+    bias: True

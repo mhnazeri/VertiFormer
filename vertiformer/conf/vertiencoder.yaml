@@ -1,0 +1,127 @@
+# Training parameters
+train_params:
+  debug: False
+  seed: 42
+  epochs: 300
+  device: cuda # device name, values: "cpu" or "cuda:x" where 'x' is gpu index, or "cuda:a" to use all GPUs
+  optimizer: adamw
+  save_every: 10
+  grad_clipping: 1.0 # set to zero to disable grad clipping
+  start_saving_best: 10 # start epoch of saving best model
+  compile: True # compile the model (requires PyTorch > 2.0)
+  accumulation_steps: 1
+  norm_pix_loss: True
+
+# Logger parameters
+logger:
+  workspace: general # workspace name
+  project: vertiformer # project name
+  experiment_name: exp # prefix to the experiment name
+  tags: "action_chuncking"
+  resume: False # (boolean) whether to resume training or not
+  online: True # (boolean) whether to store logs online or not
+  experiment_key: "" # can be retrieved from logger dashboard, available if only resuming
+  offline_directory: ./logs # where to store log data
+  disabled: False # disable the comet ml
+  upload_model: False # upload the model to CometML
+  log_env_details: False # log virtual environment details
+  auto_histogram_weight_logging: True # allows you to enable/disable histogram logging for biases and weights
+  auto_histogram_gradient_logging: True # allows you to enable/disable automatic histogram logging of gradients
+  auto_histogram_activation_logging: True # allows you to enable/disable automatic histogram logging of activations
+
+
+# Dataloader parameters
+dataloader:
+  num_workers: 10 # Allowing multi-processing
+  batch_size: 512
+  shuffle: True # whether to shuffle data or not
+  pin_memory: True # use pageable memory or pinned memory (https://developer.nvidia.com/blog/how-optimize-data-transfers-cuda-cc/)
+  prefetch_factor: 2
+  drop_last: True
+
+# Train dataset parameters
+dataset:
+  root: vertiformer/data/train/data_train.pickle # where data resides
+  train: True # train data
+  f_size: 7 # filter size to smooth cmd
+  height_diff: 0.5 # min and max elevation in robot frame
+  stats: vertiformer/data/train/stats.pkl
+  resize: 16
+  block_size: 6 # block size for the transformer
+  data_frequency: 10 # actual data frequency in hz
+  model_frequency: 3 # model frequency in hz
+  obs_len: 2 # observation window in seconds
+  pred_len: 3 # prediction length into the future
+  mask_percentage: 0.20  # mask 20% of tokens
+
+# Validation dataset parameters/ only change parameters that are different from train data
+val_dataset:
+  train: False # val data
+  root: vertiformer/data/val/data_val.pickle
+
+# directories
+directory:
+  model_name: model-name # file name for saved model. To be set automatically, no need to change
+  save: vertiformer/checkpoint
+  load: vertiformer/checkpoint/model-name-best.tar
+
+# model parameters
+model:
+  pred_len: ${dataset.pred_len}
+  pos_type: sinusoidal  # Options: [sinusoidal, learnable, rope]
+  patch_size: ${dataset.resize}
+  transformer:
+    num_layers: 6
+    block_size: ${dataset.block_size}
+  transformer_layer:
+    d_model: 512 # 384 for vertiencoder47 and 256 for vertiformer
+    nhead: 8
+    dim_feedforward: 512
+    dropout: 0.3
+    activation: gelu
+    norm_first: True
+    batch_first: True
+  pos_encoding:
+    d_model: ${model.transformer_layer.d_model}
+    dropout: 0.4
+  action_encoder:
+    in_dim: 2
+    latent_dim: ${model.transformer_layer.d_model}
+
+# AdamW parameters if using Adam optimizer
+adamw:
+  lr: 5e-4
+  betas:
+    - 0.9
+    - 0.95
+  eps: 1e-6
+  weight_decay: 0.08
+  amsgrad: False
+  fused: True # whether the fused implementation is used. Currently, torch.float64, torch.float32, torch.float16, and torch.bfloat16 are supported. (default: None)
+
+# Adam parameters if using Adam optimizer
+adam:
+  lr: 5e-4
+  betas:
+    - 0.9
+    - 0.999
+  eps: 1e-8
+  weight_decay: 0
+  amsgrad: False
+
+# RMSprop parameters if using RMSprop optimizer
+rmsprop:
+  lr: 1e-3
+  momentum: 0
+  alpha: 0.99
+  eps: 1e-8
+  centered: False
+  weight_decay: 0
+
+# SGD parameters if using SGD optimizer
+sgd:
+  lr: 1e-3
+  momentum: 0 # momentum factor
+  weight_decay: 0 # weight decay (L2 penalty)
+  dampening: 0 # dampening for momentum
+  nesterov: False # enables Nesterov momentum

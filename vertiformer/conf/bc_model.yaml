@@ -1,0 +1,7 @@
+model:
+  dims: [64,32,16]
+  act: leakyrelu
+  l_act: False
+  norm: ln # set to False to make it false
+  dropout: 0.6
+  bias: False

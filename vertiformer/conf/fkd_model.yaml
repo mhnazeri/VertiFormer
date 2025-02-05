@@ -1,0 +1,8 @@
+model:
+  fc:
+    dims: [64, 32]
+    act: tanh
+    l_act: False
+    norm: False
+    dropout: 0.2
+    bias: True
