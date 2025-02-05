@@ -44,11 +44,6 @@ class VertiFormer(nn.Module):
                 d_model=self.emb_dim,
                 dropout=cfg.pos_encoding.dropout,
             )
-        elif cfg.pos_type == "rope":
-            self.pos = RotaryPositionalEncoding(
-                dim=self.emb_dim,
-                max_seq_len=self.block_size,
-            )
         else:
             raise TypeError(
                 f"Provided positional encoding type {cfg.pos_type} is not supported."
@@ -188,11 +183,6 @@ class MMVertiFormer(nn.Module):
                 max_len=self.block_size,
                 d_model=self.emb_dim,
                 dropout=cfg.pos_encoding.dropout,
-            )
-        elif cfg.pos_type == "rope":
-            self.pos = RotaryPositionalEncoding(
-                dim=self.emb_dim,
-                max_seq_len=self.block_size,
             )
         else:
             raise TypeError(

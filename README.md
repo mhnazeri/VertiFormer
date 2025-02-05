@@ -2,7 +2,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Robotixx Open Source](Doc/collection_Robotixx.svg)](https://robotixx.cs.gmu.edu/)
 
-[Mohammad Nazeri](https://mhnazeri.github.io/), [Anuj Pokhrel](https://anujpokhrel.github.io/), Alex Card, [Aniket Datar](https://datar-aniket.github.io), Garrett Warnell and [Xuesu Xiao](https://cs.gmu.edu/~xiao/)
+[Mohammad Nazeri](https://mhnazeri.github.io/), [Anuj Pokhrel](https://anujpokhrel.github.io/), Alex Card, [Aniket Datar](https://datar-aniket.github.io), Garrett Warnell, and [Xuesu Xiao](https://cs.gmu.edu/~xiao/)
 <hr style="border: 2px solid gray;"></hr>
 
 <span style="color:green">VertiFormer</span>, a non-autoregressive multi-task Transformer that efficiently predict robot dynamics and terrain in challenging off-road environments with limited data.
