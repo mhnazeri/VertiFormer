@@ -134,7 +134,7 @@ class VertiFormer(nn.Module):
             query,
             embeddings_BTC,
             tgt_mask=self.mask,
-            memory_mask=self.mask,
+            memory_mask=None,
             tgt_is_causal=True,
             memory_is_causal=True,
         )
@@ -274,7 +274,7 @@ class MMVertiFormer(nn.Module):
             query,
             embeddings_BTC,
             tgt_mask=self.mask,
-            memory_mask=self.mask,
+            memory_mask=None,
             tgt_is_causal=True,
             memory_is_causal=True,
         )
