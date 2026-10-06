@@ -15,6 +15,9 @@ Three ingredients of <span style="color:green">VertiFormer</span> to achieve thi
 * Multiple context tokens
 * Learnable modality masking
 
+## Update
+We retrained the model with general navigation datasets (the GNM dataset) and provided the [weights](https://huggingface.co/mhnazeri/Hydra/resolve/main/vertiformer.zip) and [deployment code](https://github.com/mhnazeri/Hydra/tree/main/deployment) in the [Hydra repo](https://github.com/mhnazeri/Hydra/). Please note that this implementation uses a larger Stable Diffusion Autoencoder (80M) instead of a lightweight autoencoder used in this repo; please refer to the [reimplementation](https://github.com/mhnazeri/Hydra/blob/main/hydra/model/vertiformer.py) script.
+
 ## Installation
 Main libraries:
 * [PyTorch](https://www.pytorch.org/): as the main ML framework
